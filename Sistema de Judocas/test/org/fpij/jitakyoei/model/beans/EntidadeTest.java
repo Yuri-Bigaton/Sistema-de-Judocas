@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author 31702554
+ * @author 31756123
  */
 public class EntidadeTest {
     

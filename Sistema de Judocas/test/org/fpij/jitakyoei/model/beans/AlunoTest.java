@@ -5,6 +5,8 @@
  */
 package org.fpij.jitakyoei.model.beans;
 
+import java.util.Date;
+import org.fpij.jitakyoei.util.DatabaseManager;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,160 +20,161 @@ import static org.junit.Assert.*;
  */
 public class AlunoTest {
     
-    public AlunoTest() {
+   private static Aluno aluno;
+	private static Entidade entidade;
+	private static Endereco endereco;
+	private static Filiado fil;
+	private static Filiado filiadoProf;
+	private static Professor professor;
+	
+	@BeforeClass
+	public static void setUp(){
+		
+		fil = new Filiado();
+		fil.setNome("Aécio");
+		fil.setCpf("036.464.453-27");
+		fil.setDataNascimento(new Date());
+		fil.setDataCadastro(new Date());
+		fil.setId(1332L);
+		
+		endereco = new Endereco();
+		endereco.setBairro("Dirceu");
+		endereco.setCep("64078-213");
+		endereco.setCidade("Teresina");
+		endereco.setEstado("PI");
+		endereco.setRua("Rua Des. Berilo Mota");
+		
+		filiadoProf = new Filiado();
+		filiadoProf.setNome("Professor Antonio");
+		filiadoProf.setCpf("036.444.453-27");
+		filiadoProf.setDataNascimento(new Date());
+		filiadoProf.setDataCadastro(new Date());
+		filiadoProf.setId(3332L);
+		filiadoProf.setEndereco(endereco);
+		
+		professor = new Professor();
+		professor.setFiliado(filiadoProf);
+		
+		entidade = new Entidade();
+		entidade.setEndereco(endereco);
+		entidade.setNome("Academia 1");
+		entidade.setTelefone1("(086)1234-5432");
+		
+		aluno = new Aluno();
+		aluno.setFiliado(fil);
+		aluno.setProfessor(professor);
+		aluno.setEntidade(entidade);
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
     @AfterClass
     public static void tearDownClass() {
     }
+    /**
+    @Test
+    public void CpfInseridoCorretoTest() {
+        assertEquals("036.464.453-27", fil.getCpf());
+    }
+    **/
     
-    @Before
-    public void setUp() {
+    @Test
+    public void NomeAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getFiliado().getNome());
     }
     
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of getFiliado method, of class Aluno.
-     */
     @Test
-    public void testGetFiliado() {
-        System.out.println("getFiliado");
-        Aluno instance = new Aluno();
-        Filiado expResult = null;
-        Filiado result = instance.getFiliado();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void CpfAlunoFiliadoTest() {
+        assertEquals("036.464.453-27",aluno.getFiliado().getCpf());
     }
-
-    /**
-     * Test of setFiliado method, of class Aluno.
-     */
+    
     @Test
-    public void testSetFiliado() {
-        System.out.println("setFiliado");
-        Filiado filiado = null;
-        Aluno instance = new Aluno();
-        instance.setFiliado(filiado);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void DataNascimentoAlunoFiliadoTest() {
+        assertEquals(new Date(),aluno.getFiliado().getDataNascimento());
     }
-
-    /**
-     * Test of getEntidade method, of class Aluno.
-     */
+    
     @Test
-    public void testGetEntidade() {
-        System.out.println("getEntidade");
-        Aluno instance = new Aluno();
-        Entidade expResult = null;
-        Entidade result = instance.getEntidade();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void DataCadastroAlunoFiliadoTest() {
+        assertEquals(new Date(),aluno.getFiliado().getDataCadastro());
     }
-
-    /**
-     * Test of setEntidade method, of class Aluno.
-     */
+    
     @Test
-    public void testSetEntidade() {
-        System.out.println("setEntidade");
-        Entidade entidade = null;
-        Aluno instance = new Aluno();
-        instance.setEntidade(entidade);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void IdAlunoFiliadoTest() {
+        assertEquals("1332L",aluno.getFiliado().getId());
     }
-
-    /**
-     * Test of getProfessor method, of class Aluno.
-     */
+    
+    //Aluno -> Professor
     @Test
-    public void testGetProfessor() {
-        System.out.println("getProfessor");
-        Aluno instance = new Aluno();
-        Professor expResult = null;
-        Professor result = instance.getProfessor();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void NomeProfessorDoAlunoFiliadoTest() {
+        assertEquals("Professor Antonio",aluno.getProfessor().getFiliado().getNome());
     }
-
-    /**
-     * Test of setProfessor method, of class Aluno.
-     */
+    
     @Test
-    public void testSetProfessor() {
-        System.out.println("setProfessor");
-        Professor professor = null;
-        Aluno instance = new Aluno();
-        instance.setProfessor(professor);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void CpfProfessorDoAlunoFiliadoTest() {
+        assertEquals("036.444.453-27",aluno.getProfessor().getFiliado().getCpf());
     }
-
-    /**
-     * Test of toString method, of class Aluno.
-     */
+    
     @Test
-    public void testToString() {
-        System.out.println("toString");
-        Aluno instance = new Aluno();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void DataNascimentoProfessorDoAlunoFiliadoTest() {
+        assertEquals(new Date(),aluno.getProfessor().getFiliado().getDataNascimento());
     }
-
-    /**
-     * Test of equals method, of class Aluno.
-     */
+    
     @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object obj = null;
-        Aluno instance = new Aluno();
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void DataCadastroProfessorDoAlunoFiliadoTest() {
+        assertEquals(new Date(),aluno.getProfessor().getFiliado().getDataCadastro());
     }
-
-    /**
-     * Test of hashCode method, of class Aluno.
-     */
+    
     @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Aluno instance = new Aluno();
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void IdProfessorDoAlunoFiliadoTest() {
+        assertEquals("3332L",aluno.getProfessor().getFiliado().getId());
     }
-
-    /**
-     * Test of copyProperties method, of class Aluno.
-     */
+    
     @Test
-    public void testCopyProperties() {
-        System.out.println("copyProperties");
-        Aluno other = null;
-        Aluno instance = new Aluno();
-        instance.copyProperties(other);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void BairroProfessorDoAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getProfessor().getFiliado().getEndereco().getBairro());
+    }
+    
+    @Test
+    public void CidadeProfessorDoAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getProfessor().getFiliado().getEndereco().getCidade());
+    }
+    
+    @Test
+    public void EstadoProfessorDoAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getProfessor().getFiliado().getEndereco().getEstado());
+    }
+    
+    @Test
+    public void RuaProfessorDoAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getProfessor().getFiliado().getEndereco().getRua());
+    }
+    
+    //Aluno -> Entidade
+    @Test
+    public void BairroEntidadeDoAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getEntidade().getEndereco().getBairro());
+    }
+    
+    @Test
+    public void CidadeEntidadeDoAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getEntidade().getEndereco().getCidade());
+    }
+    
+    @Test
+    public void EstadoEntidadeDoAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getEntidade().getEndereco().getEstado());
+    }
+    
+    @Test
+    public void RuaEntidadeDoAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getEntidade().getEndereco().getRua());
+    }
+    
+    @Test
+    public void NomeEntidadeDoAlunoFiliadoTest() {
+        assertEquals("Academia 1",aluno.getEntidade().getNome());
+    }
+    
+    @Test
+    public void TelefoneEntidadeDoAlunoFiliadoTest() {
+        assertEquals("Aécio",aluno.getEntidade().getTelefone1());
     }
     
 }
