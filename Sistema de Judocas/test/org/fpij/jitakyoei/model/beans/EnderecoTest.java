@@ -34,6 +34,7 @@ public class EnderecoTest {
         endereco.setRua("Rua Antonio");
     }
     
+ 
     @AfterClass
     public static void tearDownClass() {
     }

@@ -83,6 +83,8 @@ public class AlunoTest {
     @Test
     public void CpfAlunoFiliadoTest() {
         assertEquals("036.464.453-27",aluno.getFiliado().getCpf());
+        assertNotNull(aluno.getFiliado().getCpf());
+        assertTrue(aluno.getFiliado().getCpf().length() != 11);
     }
     
     @Test
