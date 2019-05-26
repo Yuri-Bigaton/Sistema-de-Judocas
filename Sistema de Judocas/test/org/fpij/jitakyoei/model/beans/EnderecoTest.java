@@ -5,9 +5,7 @@
  */
 package org.fpij.jitakyoei.model.beans;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -31,7 +29,7 @@ public class EnderecoTest {
         endereco.setCidade("GRU");
         endereco.setEstado("SP");
         endereco.setNumero("4");
-        endereco.setRua("Rua Antonio");
+        endereco.setRua("Rua Antonio Cabral");
     }
     
  
@@ -41,37 +39,44 @@ public class EnderecoTest {
     
     @Test
     public void BairroCorretoTest() {
-        assertTrue(endereco.getBairro() == "ZL");
+        assertTrue(endereco.getBairro() == "ZN");
+        assertNotNull(endereco.getBairro());
         
     }
     
     @Test
     public void CepCorretoTest() {
-        assertTrue(endereco.getCep() == "070.04-070");
+        assertTrue(endereco.getCep() == "070.93-070");
+        assertNotNull(endereco.getCep());
+        assertTrue(endereco.getCep().length() != 8);
         
     }
     
     @Test
     public void CidadeCorretaTest() {
         assertTrue(endereco.getCidade() == "GRU");
+        assertNotNull(endereco.getCidade());
         
     }
     
     @Test
     public void EstadoCorretoTest() {
         assertTrue(endereco.getEstado() == "SP");
+        assertNotNull(endereco.getEstado());
         
     }
     
     @Test
     public void NumeroCorretoTest() {
-        assertTrue(endereco.getNumero() == "04");
+        assertTrue(endereco.getNumero() == "4");
+        assertNotNull(endereco.getNumero());
         
     }
     
     @Test
     public void RuaCorretaTest() {
-        assertTrue(endereco.getRua() == "Rua Antonio");
+        assertTrue(endereco.getRua() == "Rua Antonio Cabral");
+        assertNotNull(endereco.getRua());
         
     }
 }

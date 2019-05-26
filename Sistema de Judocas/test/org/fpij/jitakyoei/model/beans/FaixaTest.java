@@ -20,16 +20,11 @@ import static org.junit.Assert.*;
  */
 public class FaixaTest {
     
-    private static CorFaixa cores;
-    private static Faixa f;
-    
     public FaixaTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
-    
-    CorFaixa AMARELA =cores.AMARELA;
     //Date dataEntrega = f.setDataEntrega(new Date());
     
     }
@@ -46,10 +41,27 @@ public class FaixaTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getCor method, of class Faixa.
-     */
-    
+    @Test
+    public void CorDaFaixaTest(){
+        assertEquals("Branca", CorFaixa.BRANCA.toString());
+        assertEquals("Cinza", CorFaixa.CINZA.toString());
+        assertEquals("Azul", CorFaixa.AZUL.toString());
+        assertEquals("Laranja", CorFaixa.LARANJA.toString());
+        assertEquals("Verde", CorFaixa.VERDE.toString());
+        assertEquals("Roxa", CorFaixa.ROXA.toString());
+        assertEquals("Marrom", CorFaixa.MARROM.toString());
+        assertEquals("Preta 1º Dan", CorFaixa.PRETA1DAN.toString());
+        assertEquals("Preta 2º Dan", CorFaixa.PRETA2DAN.toString());
+        assertEquals("Preta 3º Dan", CorFaixa.PRETA3DAN.toString());
+        assertEquals("Preta 4º Dan", CorFaixa.PRETA4DAN.toString());
+        assertEquals("Preta 5º Dan", CorFaixa.PRETA5DAN.toString());
+        assertEquals("Coral 6º Dan", CorFaixa.CORAL6DAN.toString());
+        assertEquals("Coral 7º Dan", CorFaixa.CORAL7DAN.toString());
+        assertEquals("Vermelha 8º Dan", CorFaixa.VERMELHA8DAN.toString());
+        assertEquals("Vermelha 9º Dan", CorFaixa.VERMELHA9DAN.toString());
+        assertEquals("Vermelha 10º Dan", CorFaixa.VERMELHA10DAN.toString());
+        assertEquals("Amarela", CorFaixa.AMARELA.toString());
+    }
     
     
 }

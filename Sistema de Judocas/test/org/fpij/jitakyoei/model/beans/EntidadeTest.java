@@ -5,9 +5,7 @@
  */
 package org.fpij.jitakyoei.model.beans;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -18,71 +16,64 @@ import static org.junit.Assert.*;
  */
 public class EntidadeTest {
     
+    private static Entidade entidade;
     private static Endereco endereco;
-    public EntidadeTest() {
-    }
-    
+      
     @BeforeClass
     public static void setUpClass() {
         endereco = new Endereco();
-        endereco.setBairro("gru");
-        endereco.setCep("33");
-        endereco.setCidade("gruc");
+        endereco.setBairro("Vila Galvão");
+        endereco.setCep("007.88.999");
+        endereco.setCidade("Guarulhos");
         endereco.setEstado("SP");
         endereco.setNumero("78");
-        endereco.setRua("Rua");
+        endereco.setRua("Rua Antonio Lacerda");
+        
+        entidade = new Entidade();
+	entidade.setEndereco(endereco);
     }
         
     @AfterClass
     public static void tearDownClass() {
     }
     
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of equals method, of class Entidade.
-     */
-
     
     @Test
     public void RuaEntidadeIguaisTest() {
-        assertTrue(endereco.getRua() == "Mackenzie");
+        assertTrue(entidade.getEndereco().getRua() == "Rua Antonio Lacerda");
+        assertNotNull(entidade.getEndereco().getRua());
         
     }
     
     @Test
     public void NumeroDaEntidadeIguaisTest() {
-        assertTrue(endereco.getNumero() == "Mackenzie");
-        
+        assertTrue(entidade.getEndereco().getNumero() == "78");
+        assertNotNull(entidade.getEndereco().getNumero());
     }
     
     @Test
     public void BairroEntidadeIguaisTest() {
-        assertTrue(endereco.getBairro() == "Mackenzie");
-        
+        assertTrue(entidade.getEndereco().getBairro() == "Vila Galvão");
+        assertNotNull(entidade.getEndereco().getBairro());
     }
     
     @Test
     public void CidadeIguaisTest() {
-        assertTrue(endereco.getCidade() == "Sao Paulo");
-        
+        assertTrue(entidade.getEndereco().getCidade() == "Guarulhos");
+        assertNotNull(entidade.getEndereco().getCidade());
     }
     
     @Test
     public void EstadoEntidadeIguaisTest() {
-        assertTrue(endereco.getEstado() == "Mackenzie");
-        
+        assertTrue(entidade.getEndereco().getEstado() == "SP");
+        assertNotNull(entidade.getEndereco().getEstado());
     }
     
     @Test
     public void CepEntidadeIgualTest() {
-        assertTrue(endereco.getCep() == "20");
+        assertTrue(entidade.getEndereco().getCep() == "007.88.999");
+        assertNotNull(entidade.getEndereco().getCep());
+        assertTrue(entidade.getEndereco().getCep().length() != 8);
         
     }
    

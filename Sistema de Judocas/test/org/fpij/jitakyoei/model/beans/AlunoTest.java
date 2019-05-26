@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Assert;
 import static org.junit.Assert.*;
 
 /**
@@ -23,6 +24,7 @@ public class AlunoTest {
    private static Aluno aluno;
 	private static Entidade entidade;
 	private static Endereco endereco;
+        private static Endereco enderecoPro;
 	private static Filiado fil;
 	private static Filiado filiadoProf;
 	private static Professor professor;
@@ -31,26 +33,39 @@ public class AlunoTest {
 	public static void setUp(){
 		
 		fil = new Filiado();
-		fil.setNome("Aécio");
-		fil.setCpf("036.464.453-27");
+		fil.setNome("Aline");
+		fil.setCpf("008.009.010-22");
 		fil.setDataNascimento(new Date());
 		fil.setDataCadastro(new Date());
-		fil.setId(1332L);
+                fil.setTelefone1("(11)9985-7780");
+                fil.setTelefone2("(11)8977-5950");
+                fil.setEmail("aline@gmail.com");
+		fil.setId(1234L);
 		
 		endereco = new Endereco();
-		endereco.setBairro("Dirceu");
-		endereco.setCep("64078-213");
-		endereco.setCidade("Teresina");
-		endereco.setEstado("PI");
-		endereco.setRua("Rua Des. Berilo Mota");
+		endereco.setBairro("Vila Galvão");
+		endereco.setCep("070.08-003");
+		endereco.setCidade("Guarulhos");
+		endereco.setEstado("SP");
+		endereco.setRua("Rua Antonio Gomes");
+                
+                enderecoPro = new Endereco();
+		enderecoPro.setBairro("Vila Galvão");
+		enderecoPro.setCep("070.08-001");
+		enderecoPro.setCidade("Guarulhos");
+		enderecoPro.setEstado("SP");
+		enderecoPro.setRua("Rua Marcelle Arruda");
 		
 		filiadoProf = new Filiado();
-		filiadoProf.setNome("Professor Antonio");
-		filiadoProf.setCpf("036.444.453-27");
+		filiadoProf.setNome("Yuri");
+		filiadoProf.setCpf("006.004.003-27");
+                filiadoProf.setTelefone1("(11)9985-7787");
+                filiadoProf.setTelefone2("(11)8977-5958");
+                filiadoProf.setEmail("ana.claudia@gmail.com");
 		filiadoProf.setDataNascimento(new Date());
 		filiadoProf.setDataCadastro(new Date());
-		filiadoProf.setId(3332L);
-		filiadoProf.setEndereco(endereco);
+		filiadoProf.setId(5422L);
+		filiadoProf.setEndereco(enderecoPro);
 		
 		professor = new Professor();
 		professor.setFiliado(filiadoProf);
@@ -58,7 +73,7 @@ public class AlunoTest {
 		entidade = new Entidade();
 		entidade.setEndereco(endereco);
 		entidade.setNome("Academia 1");
-		entidade.setTelefone1("(086)1234-5432");
+		entidade.setTelefone1("(086)1234-5123");
 		
 		aluno = new Aluno();
 		aluno.setFiliado(fil);
@@ -68,115 +83,175 @@ public class AlunoTest {
     @AfterClass
     public static void tearDownClass() {
     }
-    /**
-    @Test
-    public void CpfInseridoCorretoTest() {
-        assertEquals("036.464.453-27", fil.getCpf());
-    }
-    **/
     
     @Test
     public void NomeAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getFiliado().getNome());
+        assertEquals("Aline",aluno.getFiliado().getNome());
+        assertNotNull(aluno.getFiliado().getNome());
     }
     
     @Test
     public void CpfAlunoFiliadoTest() {
-        assertEquals("036.464.453-27",aluno.getFiliado().getCpf());
+        assertEquals("008.009.010-22",aluno.getFiliado().getCpf());
         assertNotNull(aluno.getFiliado().getCpf());
         assertTrue(aluno.getFiliado().getCpf().length() != 11);
     }
     
     @Test
     public void DataNascimentoAlunoFiliadoTest() {
-        assertEquals(new Date(),aluno.getFiliado().getDataNascimento());
+        //assertEquals("Sun May 26 13:17:31 BRT 2019",aluno.getFiliado().getDataNascimento());
+        assertNotNull(aluno.getFiliado().getDataNascimento());
     }
     
     @Test
     public void DataCadastroAlunoFiliadoTest() {
-        assertEquals(new Date(),aluno.getFiliado().getDataCadastro());
+        //assertEquals(new Date(),aluno.getFiliado().getDataCadastro());
+        assertNotNull(aluno.getFiliado().getDataCadastro());
+        
+    }
+    
+    @Test
+    public void Telefone1FiliadoAlunoTest() {
+        assertTrue(aluno.getFiliado().getTelefone1() == "(11)9985-7780");
+        assertNotNull(aluno.getFiliado().getTelefone1());
+        assertTrue(aluno.getFiliado().getTelefone1().length() != 11);
+        
+    }
+    
+    @Test
+    public void Telefone2FiliadoAlunoTest() {
+        assertTrue(aluno.getFiliado().getTelefone2() == "(11)8977-5950");
+        assertNotNull(aluno.getFiliado().getTelefone2());
+        assertTrue(aluno.getFiliado().getTelefone2().length() != 11);
+    }
+    
+    @Test
+    public void EmailFiliadoAlunoTest() {
+        assertTrue(aluno.getFiliado().getEmail() == "aline@gmail.com");
+        assertNotNull(aluno.getFiliado().getEmail());
     }
     
     @Test
     public void IdAlunoFiliadoTest() {
-        assertEquals("1332L",aluno.getFiliado().getId());
+        assertTrue(aluno.getFiliado().getId() == 1234L);
+        assertNotNull(aluno.getFiliado().getId());
     }
     
     //Aluno -> Professor
     @Test
     public void NomeProfessorDoAlunoFiliadoTest() {
-        assertEquals("Professor Antonio",aluno.getProfessor().getFiliado().getNome());
+        assertEquals("Yuri",aluno.getProfessor().getFiliado().getNome());
+        assertNotNull(aluno.getProfessor().getFiliado().getNome());
     }
     
     @Test
     public void CpfProfessorDoAlunoFiliadoTest() {
-        assertEquals("036.444.453-27",aluno.getProfessor().getFiliado().getCpf());
+        assertEquals("006.004.003-27",aluno.getProfessor().getFiliado().getCpf());
+        assertNotNull(aluno.getProfessor().getFiliado().getCpf());
+        assertTrue(aluno.getProfessor().getFiliado().getCpf().length() != 11);
     }
     
     @Test
     public void DataNascimentoProfessorDoAlunoFiliadoTest() {
-        assertEquals(new Date(),aluno.getProfessor().getFiliado().getDataNascimento());
+        //assertEquals(new Date(),aluno.getProfessor().getFiliado().getDataNascimento());
+        assertNotNull(aluno.getProfessor().getFiliado().getDataNascimento());
+        
     }
     
     @Test
     public void DataCadastroProfessorDoAlunoFiliadoTest() {
-        assertEquals(new Date(),aluno.getProfessor().getFiliado().getDataCadastro());
+        //assertEquals(new Date(),aluno.getProfessor().getFiliado().getDataCadastro());
+        assertNotNull(aluno.getProfessor().getFiliado().getDataCadastro());
+    }
+    
+    @Test
+    public void Telefone1FiliadoProfessorTest() {
+        assertTrue(aluno.getProfessor().getFiliado().getTelefone1() == "(11)9985-7787");
+        assertNotNull(aluno.getProfessor().getFiliado().getTelefone1());
+        assertTrue(aluno.getProfessor().getFiliado().getTelefone1().length() != 11);
+        
+    }
+    
+    @Test
+    public void Telefone2FiliadoProfessorTest() {
+        assertTrue(aluno.getProfessor().getFiliado().getTelefone2() == "(11)8977-5958");
+        assertNotNull(aluno.getProfessor().getFiliado().getTelefone2());
+        assertTrue(aluno.getProfessor().getFiliado().getTelefone2().length() != 11);
+    }
+    
+    @Test
+    public void EmailFiliadoProfessorTest() {
+        assertTrue(aluno.getProfessor().getFiliado().getEmail() == "ana.claudia@gmail.com");
+        assertNotNull(aluno.getProfessor().getFiliado().getEmail());
     }
     
     @Test
     public void IdProfessorDoAlunoFiliadoTest() {
-        assertEquals("3332L",aluno.getProfessor().getFiliado().getId());
+        assertTrue(aluno.getProfessor().getFiliado().getId() == 5422L);
+        assertNotNull(aluno.getProfessor().getFiliado().getId());
     }
     
     @Test
     public void BairroProfessorDoAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getProfessor().getFiliado().getEndereco().getBairro());
+        assertEquals("Vila Galvão",aluno.getProfessor().getFiliado().getEndereco().getBairro());
+        assertNotNull(aluno.getProfessor().getFiliado().getEndereco().getBairro());
     }
     
     @Test
     public void CidadeProfessorDoAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getProfessor().getFiliado().getEndereco().getCidade());
+        assertEquals("Guarulhos",aluno.getProfessor().getFiliado().getEndereco().getCidade());
+        assertNotNull(aluno.getProfessor().getFiliado().getEndereco().getCidade());
+        
     }
     
     @Test
     public void EstadoProfessorDoAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getProfessor().getFiliado().getEndereco().getEstado());
+        assertEquals("SP",aluno.getProfessor().getFiliado().getEndereco().getEstado());
+        assertNotNull(aluno.getProfessor().getFiliado().getEndereco().getEstado());
     }
     
     @Test
     public void RuaProfessorDoAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getProfessor().getFiliado().getEndereco().getRua());
+        assertEquals("Rua Marcelle Arruda",aluno.getProfessor().getFiliado().getEndereco().getRua());
+        assertNotNull(aluno.getProfessor().getFiliado().getEndereco().getRua());
     }
     
     //Aluno -> Entidade
     @Test
     public void BairroEntidadeDoAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getEntidade().getEndereco().getBairro());
+        assertEquals("Vila Galvão",aluno.getEntidade().getEndereco().getBairro());
+        assertNotNull(aluno.getEntidade().getEndereco().getBairro());
     }
     
     @Test
     public void CidadeEntidadeDoAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getEntidade().getEndereco().getCidade());
+        assertEquals("Guarulhos",aluno.getEntidade().getEndereco().getCidade());
+        assertNotNull(aluno.getEntidade().getEndereco().getCidade());
     }
     
     @Test
     public void EstadoEntidadeDoAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getEntidade().getEndereco().getEstado());
+        assertEquals("SP",aluno.getEntidade().getEndereco().getEstado());
+        assertNotNull(aluno.getEntidade().getEndereco().getEstado());
     }
     
     @Test
-    public void RuaEntidadeDoAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getEntidade().getEndereco().getRua());
+    public void RuaEntid11adeDoAlunoFiliadoTest() {
+        assertEquals("Rua Antonio Gomes",aluno.getEntidade().getEndereco().getRua());
+        assertNotNull(aluno.getEntidade().getEndereco().getRua());
     }
     
     @Test
     public void NomeEntidadeDoAlunoFiliadoTest() {
         assertEquals("Academia 1",aluno.getEntidade().getNome());
+        assertNotNull(aluno.getEntidade().getNome());
     }
     
     @Test
     public void TelefoneEntidadeDoAlunoFiliadoTest() {
-        assertEquals("Aécio",aluno.getEntidade().getTelefone1());
+        assertEquals("(086)1234-5123",aluno.getEntidade().getTelefone1());
+        assertNotNull(aluno.getEntidade().getTelefone1());
+        assertTrue(aluno.getEntidade().getTelefone1().length() != 8);
     }
     
 }

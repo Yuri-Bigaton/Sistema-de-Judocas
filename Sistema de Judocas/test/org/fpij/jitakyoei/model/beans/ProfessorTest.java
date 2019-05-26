@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
  */
 public class ProfessorTest {
     
+    private static Professor prof ;
     private static Filiado filiadoProfessor;
     
     public ProfessorTest() {
@@ -29,89 +30,89 @@ public class ProfessorTest {
     public static void setUpClass() {
         filiadoProfessor = new Filiado();
         filiadoProfessor.setId(12344L);
-        filiadoProfessor.setNome("Aline");
-        filiadoProfessor.setRegistroCbj("");
+        filiadoProfessor.setNome("Ana Claudia");
+        filiadoProfessor.setRegistroCbj("Registro");
 	filiadoProfessor.setDataNascimento(new Date());
         filiadoProfessor.setDataCadastro(new Date());
-        filiadoProfessor.setTelefone1("2");
-        filiadoProfessor.setTelefone2("1");
-        filiadoProfessor.setEmail("email@email.com");
-        filiadoProfessor.setCpf("0");
+        filiadoProfessor.setTelefone1("(11)9985-7787");
+        filiadoProfessor.setTelefone2("(11)8977-5958");
+        filiadoProfessor.setEmail("ana.claudia@gmail.com");
+        filiadoProfessor.setCpf("088.655.585-44");
         filiadoProfessor.setObservacoes("Obs");
         
-        
+        prof = new Professor();
+        prof.setFiliado(filiadoProfessor);
+                      
     }
     
     @AfterClass
     public static void tearDownClass() {
     }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
-    /**
-     * Test of equals method, of class Professor.
-     */
+    
     @Test
-    public void IDFiliadoProfessorIguaisTest() {
-        assertTrue(filiadoProfessor.getId() == 12344L);
+    public void IDFiliadoProfessorTest() {
+        assertTrue(prof.getFiliado().getId() == 12344L);
+        assertNotNull(prof.getFiliado().getId());
+    }
+    
+    @Test
+    public void NomeFiliadoProfessorTest() {
+        assertTrue(prof.getFiliado().getNome() == "Ana Claudia");
+        assertNotNull(prof.getFiliado().getNome());
         
     }
     
     @Test
-    public void NomeFiliadoProfessorIguaisTest() {
-        assertTrue(filiadoProfessor.getNome() == "Aline");
+    public void DataNascimentoFiliadoProfessorTest() {
+        assertNotNull(prof.getFiliado().getDataNascimento());
+    }
+    
+    @Test
+    public void DataCastroFiliadoProfessorTest() {
+        assertNotNull(prof.getFiliado().getDataCadastro());
+    }
+    
+    @Test
+    public void Telefone1FiliadoProfessorTest() {
+        assertTrue(prof.getFiliado().getTelefone1() == "(11)9985-7787");
+        assertNotNull(prof.getFiliado().getTelefone1());
+        assertTrue(prof.getFiliado().getTelefone1().length() != 11);
         
     }
     
     @Test
-    public void DataNascimentoFiliadoProfessorIguaisTest() {
-        assertTrue(filiadoProfessor.getDataNascimento() == new Date());
-        
+    public void Telefone2FiliadoProfessorTest() {
+        assertTrue(prof.getFiliado().getTelefone2() == "(11)8977-5958");
+        assertNotNull(prof.getFiliado().getTelefone2());
+        assertTrue(prof.getFiliado().getTelefone2().length() != 11);
     }
     
     @Test
-    public void DataCastroFiliadoProfessorIguaisTest() {
-        assertTrue(filiadoProfessor.getDataCadastro() == new Date());
-        
+    public void EmailFiliadoProfessorTest() {
+        assertTrue(prof.getFiliado().getEmail() == "ana.claudia@gmail.com");
+        assertNotNull(prof.getFiliado().getEmail());
     }
     
     @Test
-    public void Telefone1FiliadoProfessorIguaisTest() {
-        assertTrue(filiadoProfessor.getTelefone1() == "Mackenzie");
-        
+    public void CpfFiliadoProfessorTest() {
+        assertTrue(prof.getFiliado().getCpf() == "088.655.585-44");
+        assertNotNull(prof.getFiliado().getCpf());
+        assertTrue(prof.getFiliado().getCpf().length() != 11);
     }
     
     @Test
-    public void Telefone2FiliadoProfessorIguaisTest() {
-        assertTrue(filiadoProfessor.getTelefone2() == "Mackenzie");
-        
+    public void ObservacaoFiliadoProfessorTest() {
+        assertTrue(prof.getFiliado().getObservacoes() == "Obs");
+        assertNotNull(prof.getFiliado().getObservacoes());
     }
     
     @Test
-    public void EmailFiliadoProfessorIguaisTest() {
-        assertTrue(filiadoProfessor.getEmail() == "Mackenzie");
+    public void RegistroCbjFiliadoProfessorTest() {
+        assertTrue(prof.getFiliado().getRegistroCbj() == "Registro");
+        assertNotNull(prof.getFiliado().getRegistroCbj());
         
     }
-    
-    @Test
-    public void CpfFiliadoProfessorIguaisTest() {
-        assertTrue(filiadoProfessor.getCpf() == "Mackenzie");
-        
-    }
-    
-    @Test
-    public void ObservacaoFiliadoProfessorIguaisTest() {
-        assertTrue(filiadoProfessor.getObservacoes() == "Mackenzie");
-        
-    }
-    
-    
     
 
     
