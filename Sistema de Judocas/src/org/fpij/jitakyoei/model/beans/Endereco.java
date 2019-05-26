@@ -1,6 +1,8 @@
 package org.fpij.jitakyoei.model.beans;
 
+
 import net.java.dev.genesis.annotation.Form;
+
 
 @Form
 public class Endereco {
